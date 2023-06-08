@@ -1,31 +1,22 @@
-class Pupil :
-    def __init__(self, name, lastname):
-        self.name = name
-        self.lastname = lastname
+#importowanie modulow klas
+from classes.pupil import Pupil
+from classes.teacher import Teacher
+from classes.educator import Educator
 
-    def pupil_information(self):
-        pass
-
-
-
-class Teacher :
-    def __init__(self, name, lastname):
-        self.name = name
-        self.lastname = lastname
-
-
-class Educator :
-    def __init__(self, name, lastname):
-        self.name = name
-        self.lastname = lastname
-
+#tworzenie slownikow
+student_list = {}
+teacher_list = {}
+educator_list = {}
 
 conditions = ('utwórz', 'utworz', 'zarządzaj', 'zarzadzaj', 'koniec')
 while True:
+    print(student_list)
     ask = input('Co chcesz zrobić (utwórz, zarządzaj, koniec)?: ')
     if ask not in conditions:
         print('Podałeś nieprawidłową komendę.Spróbuj jeszcze raz')
         continue
+
+#czesc programu odpowiadajaca za proces tworzenia uzytkownikow
     elif ask == 'utwórz' or ask == 'utworz':
         conditionss = ('uczeń', 'uczen', 'nauczyciel', 'wychowawca', 'koniec')
         inquiry = input('Wybierz następującą opcję: \nuczeń\nnauczyciel\nwychowawca\nkoniec\n')
@@ -33,23 +24,24 @@ while True:
             print('Spróbuj jeszcze raz')
             break
         elif inquiry == 'uczeń' or inquiry == 'uczen':
-            pupil_name = input('Podaj imię ucznia: ')
-            pupil_lastname = input('Podaj nazwisko ucznia: ')
+            pupil_name = input('Podaj imię i nazwisko ucznia: ')
             pupil_class = input('Podaj do jakiej klasy chodzi uczeń: ')
-            new_pupil = Pupil(pupil_name, pupil_lastname)
-            new_pupil.pupil_information()
-
-
-            pass
+            new_student = Pupil(pupil_name)
+            student_list[new_student] = pupil_class
         elif inquiry == 'nauczyciel':
-
-            pass
+            teacher_name = input('Podaj imię i nazwisko nauczyciela: ')
+            teacher_subject = input('Podaj nazwę przedmiotu, który prowadzi nauczyciel: ')
+            teacher_class = input('Podaj klasę/y, które prowadzi nauczyciel: ')
+            new_teacher = Teacher(teacher_name)
+            teacher_list[new_teacher] = teacher_subject, teacher_class
         elif inquiry == 'wychowawca':
-
-            pass
+            educator_name = input('Podaj imię i nazwisko wychowawcy: ')
+            educator_class = input('Podaj klasę jaką prowadzi wychowawca: ')
+            new_educator = Educator(educator_name)
+            educator_list[new_educator] = educator_class
         elif inquiry == 'koniec':
             break
-
+#czesc programu odpowiadajaca za zarzadzanie uzytkownikami
     elif ask == 'zarządzaj' or ask == 'zarzadzaj':
 
         pass
