@@ -34,10 +34,11 @@ while True:
             teacher_subject = input('Podaj nazwę przedmiotu, który prowadzi nauczyciel: ')
             while True:
                 teacher_class = input('Podaj klasę/y, które prowadzi nauczyciel: ')
-                if teacher_class == '':
-                    break
                 classes_list.append(teacher_class)
                 new_teacher = Teacher(teacher_name, teacher_subject, teacher_class)
+                if teacher_class == '':
+                    break
+
         elif inquiry == 'wychowawca':
             educator_name = input('Podaj imię i nazwisko wychowawcy: ')
             educator_class = input('Podaj klasę jaką prowadzi wychowawca: ')
@@ -61,9 +62,9 @@ while True:
                 continue
             else:
                 print('Lista uczniów:')
-                for student in student_list:
-                    if student.cla == choice :
-                        print(student)
+                for pupil in student_list:
+                    if pupil.cla == choice :
+                        print(pupil)
                 for educator in educator_list:
                     if educator.cla == choice :
                         print(educator)
@@ -76,8 +77,10 @@ while True:
 
 
         elif inquiry == 'nauczyciel':
-
-
+            choice = input('Podaj imię i nazwisko nauczyciela: ')
+            for teacher in teacher_list:
+                if teacher.name == choice:
+                    print(teacher)
 
         elif inquiry == 'wychowawca':
             choice = input('Wpisz imię i nazwisko wychowawcy ')
