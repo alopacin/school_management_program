@@ -41,11 +41,31 @@ while True:
             educator_list[new_educator] = educator_class
         elif inquiry == 'koniec':
             break
+
 #czesc programu odpowiadajaca za zarzadzanie uzytkownikami
     elif ask == 'zarządzaj' or ask == 'zarzadzaj':
+        conditionsss = ['klasa', 'uczeń', 'uczen', 'nauczyciel', 'wychowawca']
+        inquiry = input('Wybierz następującą opcję: \nklasa\nuczeń\nnauczyciel\nwychowawca\nkoniec')
+        if inquiry not in conditionsss :
+            print('Spróbuj jeszcze raz')
+            break
+        elif inquiry == 'klasa':
+            pass
 
-        pass
+
+        elif inquiry == 'uczen' or inquiry == 'uczeń':
+            pass
 
 
+        elif inquiry == 'nauczyciel':
+            pass
+
+
+        elif inquiry == 'wychowawca':
+            pass
+
+
+        elif inquiry == 'koniec':
+            break
     elif ask == 'koniec':
         break
