@@ -23,21 +23,24 @@ while True:
         if inquiry not in conditionss:
             print('Spróbuj jeszcze raz')
             break
+
         elif inquiry == 'uczeń' or inquiry == 'uczen':
             pupil_name = input('Podaj imię i nazwisko ucznia: ')
             pupil_class = input('Podaj do jakiej klasy chodzi uczeń: ')
             new_student = Pupil(pupil_name, pupil_class)
             student_list.append(new_student)
             classes_list.append(pupil_class)
+
         elif inquiry == 'nauczyciel':
             teacher_name = input('Podaj imię i nazwisko nauczyciela: ')
             teacher_subject = input('Podaj nazwę przedmiotu, który prowadzi nauczyciel: ')
             while True:
                 teacher_class = input('Podaj klasę/y, które prowadzi nauczyciel: ')
-                classes_list.append(teacher_class)
-                new_teacher = Teacher(teacher_name, teacher_subject, teacher_class)
                 if teacher_class == '':
                     break
+                classes_list.append(teacher_class)
+                new_teacher = Teacher(teacher_name, teacher_subject, teacher_class)
+                teacher_list.append(new_teacher)
 
         elif inquiry == 'wychowawca':
             educator_name = input('Podaj imię i nazwisko wychowawcy: ')
@@ -46,7 +49,7 @@ while True:
             classes_list.append(educator_class)
             educator_list.append(new_educator)
         elif inquiry == 'koniec':
-            break
+            continue
 
 # czesc programu odpowiadajaca za zarzadzanie uzytkownikami
     elif ask == 'zarządzaj' or ask == 'zarzadzaj':
@@ -54,7 +57,8 @@ while True:
         inquiry = input('Wybierz następującą opcję: \nklasa\nuczeń\nnauczyciel\nwychowawca\nkoniec\n')
         if inquiry not in conditionsss :
             print('Spróbuj jeszcze raz')
-            break
+            continue
+
         elif inquiry == 'klasa':
             choice = input('Wpisz nazwę klasy: ')
             if choice not in classes_list:
@@ -68,19 +72,27 @@ while True:
                 for educator in educator_list:
                     if educator.cla == choice :
                         print(educator)
+
         elif inquiry == 'uczen' or inquiry == 'uczeń':
             choice = input('Podaj imię i nazwisko ucznia ')
             for student in student_list:
                 if student.name == choice:
-                    pass
-
-
+                    for teacher in teacher_list:
+                        if student.cla == teacher.classes:
+                            print(teacher.subject)
+                            print(teacher.name)
+                        else:
+                            print('Uczeń nie ma żadnych lekcji')
+                else:
+                    print('Nie ma takiego ucznia')
 
         elif inquiry == 'nauczyciel':
             choice = input('Podaj imię i nazwisko nauczyciela: ')
             for teacher in teacher_list:
                 if teacher.name == choice:
                     print(teacher)
+                else:
+                    print('nie ma takiego nauczyciela')
 
         elif inquiry == 'wychowawca':
             choice = input('Wpisz imię i nazwisko wychowawcy ')
@@ -90,8 +102,12 @@ while True:
                     for student in student_list:
                         if student.cla == x:
                             print(student)
+                else:
+                    print('Nie ma takiego wychowawcy')
+                    continue
 
         elif inquiry == 'koniec':
-            break
+            continue
+
     elif ask == 'koniec':
         break
