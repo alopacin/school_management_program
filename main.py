@@ -3,7 +3,7 @@ from classes.pupil import Pupil
 from classes.teacher import Teacher
 from classes.educator import Educator
 
-# utworzenie slownikow
+# utworzenie list
 student_list = []
 teacher_list = []
 educator_list = []
@@ -37,16 +37,17 @@ while True:
         elif inquiry == 'nauczyciel':
             teacher_name = input('Podaj imię i nazwisko nauczyciela: ')
             teacher_subject = input('Podaj nazwę przedmiotu, który prowadzi nauczyciel: ')
+            new_teacher = Teacher(teacher_name, teacher_subject)
+            teacher_list.append(new_teacher)
             while True:
                 teacher_class = input('Podaj klasę/y, które prowadzi nauczyciel: ')
                 if teacher_class == '':
                     break
-                new_teacher = Teacher(teacher_name, teacher_subject, teacher_class)
-                teacher_list.append(new_teacher)
+                new_teacher.add_class(teacher_class)
                 if teacher_class not in classes_list:
                     classes_list.append(teacher_class)
 
-#dodawanie do listy wychowawcy
+# dodawanie do listy wychowawcy
         elif inquiry == 'wychowawca':
             educator_name = input('Podaj imię i nazwisko wychowawcy: ')
             educator_class = input('Podaj klasę jaką prowadzi wychowawca: ')
@@ -109,7 +110,7 @@ while True:
             if not teacher_found:
                 print('Nie ma takiego nauczyciela')
 
-# wyswietlenie uczniow, ktorych wychowawca jest wpisany wychowawca
+# wyswietlenie uczniow, ktorych wpisany wychowawca jest wychowawca
         elif inquiry == 'wychowawca':
             choice = input('Wpisz imię i nazwisko wychowawcy ')
             educator_found = False
@@ -126,6 +127,6 @@ while True:
         elif inquiry == 'koniec':
             continue
 
-# jezeli zostanie wpisany koniec program konczy dzialanie
+# jezeli zostanie wpisany koniec, program konczy dzialanie
     elif ask == 'koniec':
         break
